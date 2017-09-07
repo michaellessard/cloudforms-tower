@@ -1,12 +1,17 @@
-# Deploy a guest from a template
-- vsphere_guest:
-    vcenter_hostname: vcenter.mydomain.local
-    username: myuser
-    password: mypass
-    guest: newvm001
-    from_template: yes
-    template_src: centosTemplate
-    cluster: MainCluster
-    resource_pool: "/Resources"
-    vm_extra_config:
-      folder: MyFolder
+---
+- name: Deploy VM from template
+  hosts: all
+  tasks:
+
+- name: Deploy VM
+    vsphere_guest:
+      vcenter_hostname: vcenter.mydomain.local
+      username: myuser
+      password: mypass
+      guest: newvm001
+      from_template: yes
+      template_src: centosTemplate
+      cluster: MainCluster
+      resource_pool: "/Resources"
+      vm_extra_config:
+        folder: MyFolder
