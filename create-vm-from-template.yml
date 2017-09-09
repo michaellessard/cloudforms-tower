@@ -1,17 +1,25 @@
 ---
+# This playbook is meant to be an easy introduction to using Ansible Tower to 
+# deploy to virtual machines to vSphere environments from pre-existing templates
+
+# the job template should be run on localhost (or whatever worker node with prereqs)
+# node must have pysphere installed: pip install pyvsphere
+
 - name: Deploy VM from template
   hosts: all
+  # use cloud credentials in tower for vCenter access
+  # define a survey for any parameters that you want to prompt users for 
   tasks:
-
-- name: Deploy VM
-    vsphere_guest:
-      vcenter_hostname: vcenter.mydomain.local
-      username: myuser
-      password: mypass
-      guest: newvm001
-      from_template: yes
-      template_src: centosTemplate
-      cluster: MainCluster
-      resource_pool: "/Resources"
-      vm_extra_config:
-        folder: MyFolder
+    - name: Deploy VM
+      vsphere_guest:
+        # this lookup takes the vCenter credentials from the tower call 
+        # these credentials should be defined tower and connected in the
+        # job template
+        vcenter_hostname: "{{ lookup('env', 'VMWARE_HOST') }}"
+        username: "{{ lookup('env', 'VMWARE_USER') }}"
+        password: "{{ lookup('env', 'VMWARE_PASSWORD') }}"
+        guest: "{{ vm_name }}"
+        from_template: yes
+        template_src: centosTemplate
+        cluster: MainCluster
+        resource_pool: "/Resources"
