@@ -1,15 +1,15 @@
 ---
 # This playbook is meant to be an easy introduction to using Ansible Tower to 
 # deploy VMs to Azure
-
-# the job template should be run on localhost (or whatever worker node with prereqs)
-# node must have pysphere installed: pip install msrestazure
+# The result of this template will be a RHEL 7.3 VM deployed from the Azure marketplace
+# the job template should be run against the tower system, note connection: local
 
 - name: Deploy Azure VM
   hosts: all
   connection: local
   # use cloud credentials in Tower for Azure access
-  # define a survey for any parameters that you want to prompt users for 
+  # define a survey for any parameters that you want to prompt users for
+  # here we are using survey_resource_group, survey_vm_name, survey_ssh_public_key 
   tasks:
     - name: Create VM
       azure_rm_virtualmachine:
@@ -20,10 +20,9 @@
         client_id: "{{ lookup('env', 'AZURE_CLIENT_ID') }}"
         tenant: "{{ lookup('env', 'AZURE_TENANT') }}"
         secret: "{{ lookup('env', 'AZURE_SECRET') }}"
-        # management_cert_path: "{{ lookup('env', 'AZURE_CERT_PATH') }}"
         resource_group: "{{ survey_resource_group }}"
         vm_size: Standard_DS1_v2
-        name: "{{ vm_name }}"
+        name: "{{ survey_vm_name }}"
         os_type: Linux
         ssh_password_enabled: False
         ssh_public_keys:
