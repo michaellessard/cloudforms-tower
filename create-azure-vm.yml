@@ -21,7 +21,7 @@
         tenant: "{{ lookup('env', 'AZURE_TENANT') }}"
         secret: "{{ lookup('env', 'AZURE_SECRET') }}"
         # management_cert_path: "{{ lookup('env', 'AZURE_CERT_PATH') }}"
-        resource_group: "{{ resource_group }}""
+        resource_group: "{{ survey_resource_group }}"
         vm_size: Standard_DS1_v2
         name: "{{ vm_name }}"
         admin_username: az_user
