@@ -26,6 +26,9 @@
         name: "{{ vm_name }}"
         os_type: Linux
         ssh_password_enabled: False
+        ssh_public_keys:
+          - path: /home/az_user/.ssh/authorized_keys
+            key_data: "{{ survey_ssh_public_key }}"
         admin_username: az_user
         image:
           offer: RHEL
