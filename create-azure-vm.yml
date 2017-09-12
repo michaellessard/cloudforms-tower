@@ -18,8 +18,8 @@
         # in the job template 
         subscription_id: "{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}"
         client_id: "{{ lookup('env', 'AZURE_CLIENT_ID') }}"
-        tenant: "{{ lookup('env', 'AZURE_TENANT_ID') }}"
-        secret: "{{ lookup('env', 'AZURE_CLIENT_SECRET') }}"
+        tenant: "{{ lookup('env', 'AZURE_TENANT') }}"
+        secret: "{{ lookup('env', 'AZURE_SECRET') }}"
         # management_cert_path: "{{ lookup('env', 'AZURE_CERT_PATH') }}"
         resource_group: myResourceGroup
         vm_size: Standard_DS1_v2
