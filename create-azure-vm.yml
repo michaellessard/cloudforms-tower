@@ -17,7 +17,7 @@
         # define azure cloud credentials in Tower and ensure they are referenced
         # in the job template 
         subscription_id: "{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}"
-        management_cert_path: "{{ lookup('env', 'AZURE_CERT_PATH') }}"
+        # management_cert_path: "{{ lookup('env', 'AZURE_CERT_PATH') }}"
         resource_group: myResourceGroup
         vm_size: Standard_DS1_v2
         name: "{{ vm_name }}"
