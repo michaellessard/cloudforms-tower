@@ -24,8 +24,9 @@
         resource_group: "{{ survey_resource_group }}"
         vm_size: Standard_DS1_v2
         name: "{{ vm_name }}"
+        os_type: Linux
+        ssh_password_enabled: False
         admin_username: az_user
-        adminPassword: az_user
         image:
           offer: RHEL
           publisher: RedHat
