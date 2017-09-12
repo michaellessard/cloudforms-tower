@@ -6,7 +6,7 @@
 # node must have pysphere installed: pip install msrestazure
 
 - name: Deploy Azure VM
-  # hosts: localhost
+  hosts: all
   # use cloud credentials in Tower for Azure access
   # define a survey for any parameters that you want to prompt users for 
   tasks:
