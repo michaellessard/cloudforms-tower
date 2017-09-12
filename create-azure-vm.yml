@@ -22,7 +22,7 @@
         name: "{{ vm_name }}"
         admin_username: az_user
         image:
-          offer: CentOS
-          publisher: OpenLogic
+          offer: RHEL
+          publisher: RedHat
           sku: '7.3'
           version: latest
