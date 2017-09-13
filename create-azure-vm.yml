@@ -7,7 +7,7 @@
 - name: Deploy Azure VM
   hosts: all
   connection: local 
-  debug: 3
+
   # use cloud credentials in Tower for Azure access
   # define a survey for any parameters that you want to prompt users for
   # here we are using survey_resource_group, survey_vm_name, survey_ssh_public_key
