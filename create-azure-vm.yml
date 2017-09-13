@@ -1,21 +1,20 @@
 ---
-# This playbook is meant to be an easy introduction to using Ansible Tower to 
+# This playbook is meant to be an easy introduction to using Ansible Tower to
 # deploy VMs to Azure
 # The result of this template will be a RHEL 7.3 VM deployed from the Azure marketplace
 # the job template should be run against the tower system, note connection: local
 
 - name: Deploy Azure VM
   hosts: all
-  connection: local
   # use cloud credentials in Tower for Azure access
   # define a survey for any parameters that you want to prompt users for
-  # here we are using survey_resource_group, survey_vm_name, survey_ssh_public_key 
+  # here we are using survey_resource_group, survey_vm_name, survey_ssh_public_key
   tasks:
     - name: Create VM
       azure_rm_virtualmachine:
         # the lookups here are taking infromation from the tower cloud credentials
         # define azure cloud credentials in Tower and ensure they are referenced
-        # in the job template 
+        # in the job template
         subscription_id: "{{ lookup('env', 'AZURE_SUBSCRIPTION_ID') }}"
         client_id: "{{ lookup('env', 'AZURE_CLIENT_ID') }}"
         tenant: "{{ lookup('env', 'AZURE_TENANT') }}"
